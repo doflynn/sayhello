@@ -1,0 +1,5 @@
+local:com.lodentech.sayhello:sayhello-api:jar:1.0.0-SNAPSHOT (compile)
+local:com.lodentech.sayhello:sayhello-svc:jar:1.0.0-SNAPSHOT (compile)
+local:org.slf4j:slf4j-api:jar:1.7.14 (compile)
+local:org.slf4j:slf4j-log4j12:jar:1.7.14 (compile)
+local:log4j:log4j:jar:1.2.17 (compile)

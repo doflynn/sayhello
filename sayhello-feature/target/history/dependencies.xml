@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" name="xyz.feature">
+    <feature version="0.0.0">
+        <bundle>mvn:com.lodentech.sayhello/sayhello-api/1.0.0-SNAPSHOT</bundle>
+        <bundle>mvn:com.lodentech.sayhello/sayhello-svc/1.0.0-SNAPSHOT</bundle>
+        <bundle>mvn:log4j/log4j/1.2.17</bundle>
+        <bundle>mvn:org.slf4j/slf4j-api/1.7.14</bundle>
+        <bundle>mvn:org.slf4j/slf4j-log4j12/1.7.14</bundle>
+    </feature>
+</features>
