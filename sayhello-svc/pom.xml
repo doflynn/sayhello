@@ -25,10 +25,8 @@
 	<artifactId>sayhello-svc</artifactId>
 	<packaging>bundle</packaging>
 
-	<name>sayhello-svc Bundle</name>
-	<description>
-        sayhello-svc OSGi bundle project.
-    </description>
+	<name>sayhello-svc</name>
+	<description>SayHello Service OSGi bundle project.</description>
 
 	<dependencies>
 		<dependency>

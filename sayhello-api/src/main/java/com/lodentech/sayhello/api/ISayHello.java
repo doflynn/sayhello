@@ -5,6 +5,10 @@
  */
 package com.lodentech.sayhello.api;
 
+/**
+ * 
+ * @author doflynn
+ */
 public interface ISayHello {
 	/**
 	 * Say Hello to someone

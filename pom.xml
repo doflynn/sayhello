@@ -58,6 +58,21 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+		<!-- OSGi Blueprint Annotations -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.ops4j.pax.cdi</groupId>
+			<artifactId>pax-cdi-api</artifactId>
+			<version>0.8.0</version>
+			<optional>true</optional>
+		</dependency>
+
 		<!-- Test dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -92,6 +107,7 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
@@ -102,9 +118,11 @@
 					<instructions>
 						<service_mode>generic</service_mode>
 						<_include>-bnd.bnd</_include>
+						<!-- djo is this needed to register OSGi service? <Service-Component>OSGI-INF/serviceComponents.xml</Service-Component> -->
 					</instructions>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.aries.blueprint</groupId>
 				<artifactId>blueprint-maven-plugin</artifactId>
@@ -112,6 +130,7 @@
 				<executions>
 					<execution>
 						<goals>
+							<goal>add-resource-dir</goal>
 							<goal>blueprint-generate</goal>
 						</goals>
 					</execution>
@@ -122,6 +141,7 @@
 					</scanPaths>
 				</configuration>
 			</plugin>
+
 
 			<plugin>
 				<groupId>org.apache.karaf.tooling</groupId>

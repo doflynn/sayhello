@@ -14,19 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lodentech.sayhello;
+package com.lodentech.sayhello.svc;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * 
+ * 
+ * @author doflynn
+ */
 public class Activator implements BundleActivator {
+	final Logger logger = LoggerFactory.getLogger(Activator.class);
 
     public void start(BundleContext context) {
-        System.out.println("Starting the bundle");
+        logger.debug("Starting the bundle");
     }
 
     public void stop(BundleContext context) {
-        System.out.println("Stopping the bundle");
+        logger.debug("Stopping the bundle");
     }
 
 }
