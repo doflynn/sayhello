@@ -1,0 +1,9 @@
+Bundle-Activator: com.lodentech.sayhello.svc.Activator
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+
+# Import-Package:
+
+Export-Package: 
+
+Bundle-ClassPath: .
