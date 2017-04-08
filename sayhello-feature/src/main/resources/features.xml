@@ -8,6 +8,7 @@
 	<feature name="sayhello-feature" version="1.0.0-SNAPSHOT">
 		<bundle>mvn:com.lodentech.sayhello/sayhello-api/1.0.0-SNAPSHOT</bundle>
 		<bundle>mvn:com.lodentech.sayhello/sayhello-svc/1.0.0-SNAPSHOT</bundle>
+		<bundle>mvn:com.lodentech.sayhello/sayhello-cmd/1.0.0-SNAPSHOT</bundle>
 	</feature>
 
 </features>

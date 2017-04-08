@@ -47,7 +47,7 @@ public class SayHelloImpl implements ISayHello {
 	 */
 	@Override
 	public String sayHello(String name) {
-		logger.debug("Saying hello to: ", name);
+		logger.info("Saying hello to: ", name);
 		
 		return hello + name;
 	}
