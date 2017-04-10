@@ -23,7 +23,7 @@
 	</parent>
 
 	<artifactId>sayhello-cmd</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>${sayhello.version}</version>
 	<packaging>bundle</packaging>
 
 	<name>sayhello-cmd</name>
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>com.lodentech.sayhello</groupId>
 			<artifactId>sayhello-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${sayhello.version}</version>
 			<type>bundle</type>
 		</dependency>
 
