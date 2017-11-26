@@ -14,8 +14,15 @@
 		<scanPath>com.lodentech</scanPath>
 		<sayhello.version>1.0.0-SNAPSHOT</sayhello.version>
 		<osgi.version>6.0.0</osgi.version>
+
+		<java.version>1.8</java.version>
 		<slf4j.version>1.7.14</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
+		<cxf.version>3.2.1</cxf.version>
+		<junit.version>4.12</junit.version>
+		<jaxrs-version>2.1</jaxrs-version>
+		<jackson.version>2.7.6</jackson.version>
+
 	</properties>
 
 
@@ -24,8 +31,40 @@
 		<module>sayhello-svc</module>
 		<module>sayhello-cmd</module>
 		<module>sayhello-feature</module>
-		<module>sayhello-test</module>
 	</modules>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>3.3.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<obrRepository>NONE</obrRepository>
+					<instructions>
+						<_include>osgi.bnd</_include>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<dependency>
@@ -34,7 +73,89 @@
 			<version>${osgi.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi.cmpn</artifactId>
+			<version>${osgi.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-transports-http -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-core</artifactId>
+			<version>${cxf.version}</version>
+			<type>bundle</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>${cxf.version}</version>
+			<type>bundle</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+			<type>bundle</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>${cxf.version}</version>
+			<type>bundle</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-client</artifactId>
+			<version>${cxf.version}</version>
+			<type>bundle</type>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.inject/javax.inject 
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+		-->
+
+		<!-- https://mvnrepository.com/artifact/org.ops4j.pax.cdi/pax-cdi-api -->
+		<dependency>
+			<groupId>org.ops4j.pax.cdi</groupId>
+			<artifactId>pax-cdi-api</artifactId>
+			<version>1.0.0.RC2</version>
+			<optional>true</optional>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>${jaxrs-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>${jackson.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -46,118 +167,14 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
-			<type>bundle</type>
 		</dependency>
 
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>osgi.cmpn</artifactId>
-			<version>6.0.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-
-		<!-- OSGi Blueprint Annotations -->
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.ops4j.pax.cdi</groupId>
-			<artifactId>pax-cdi-api</artifactId>
-			<version>0.8.0</version>
-			<optional>true</optional>
-		</dependency>
-
-		<!-- Test dependencies -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
 
 	</dependencies>
 
-	<build>
-
-		<!-- Apache Karaf -->
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.karaf.tooling</groupId>
-					<artifactId>karaf-maven-plugin</artifactId>
-					<version>4.0.0</version>
-					<extensions>true</extensions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<version>3.2.0</version>
-				<extensions>true</extensions>
-				<configuration>
-					<obrRepository>NONE</obrRepository>
-					<instructions>
-						<service_mode>generic</service_mode>
-						<_include>-bnd.bnd</_include>
-						<!-- djo is this needed to register OSGi service? <Service-Component>OSGI-INF/serviceComponents.xml</Service-Component> -->
-					</instructions>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.aries.blueprint</groupId>
-				<artifactId>blueprint-maven-plugin</artifactId>
-				<version>1.5.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>add-resource-dir</goal>
-							<goal>blueprint-generate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<scanPaths>
-						<scanPath>${scanPath}</scanPath>
-					</scanPaths>
-				</configuration>
-			</plugin>
-
-
-			<plugin>
-				<groupId>org.apache.karaf.tooling</groupId>
-				<artifactId>karaf-maven-plugin</artifactId>
-				<configuration>
-					<startLevel>100</startLevel>
-					<aggregateFeatures>true</aggregateFeatures>
-					<resolver>(obr)</resolver>
-					<checkDependencyChange>true</checkDependencyChange>
-					<failOnDependencyChange>false</failOnDependencyChange>
-					<logDependencyChanges>true</logDependencyChanges>
-					<overwriteChangedDependencies>true</overwriteChangedDependencies>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

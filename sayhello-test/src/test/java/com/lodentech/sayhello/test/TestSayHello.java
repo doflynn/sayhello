@@ -64,9 +64,4 @@ public class TestSayHello {
 		Assert.assertTrue(true);
 	}
 
-	@Test
-	public void testFailure() throws Exception {
-		Assert.assertTrue(false);
-	}
-
 }

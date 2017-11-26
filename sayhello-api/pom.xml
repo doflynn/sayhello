@@ -26,7 +26,6 @@
 	<packaging>bundle</packaging>
 
 	<name>sayhello-api</name>
-	<description>SayHello API OSGi bundlse project.</description>
+	<description>SayHello API OSGi bundle project.</description>
 
-	<version>1.0.0-SNAPSHOT</version>
 </project>

@@ -5,34 +5,40 @@ import org.slf4j.LoggerFactory;
 
 import com.lodentech.sayhello.api.ISayHello;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
-import org.ops4j.pax.cdi.api.OsgiService;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
-import org.ops4j.pax.cdi.api.Properties;
-import org.ops4j.pax.cdi.api.Property;
+import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Argument;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.lifecycle.Reference;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
 
 /**
  * SayHello Karaf Shell Command
  *
  */
-@Singleton
-@OsgiServiceProvider(classes=CmdHello.class)
-@Properties(//
-{
- @Property(name = "osgi.command.scope", value = "sayhello"),
- @Property(name = "osgi.command.function", value = "hello")
-})
-public class CmdHello 
+@Command(scope = "sayhello", name = "hello", description="Say hello")
+@Service
+public class CmdHello implements Action
 {
 	final Logger logger = LoggerFactory.getLogger(CmdHello.class);
 
-    @Inject @OsgiService
-    ISayHello svcSayHello;
+	@Reference
+	ISayHello svcSayHello = null;
     
-    public void hello( String name ) throws Exception {
-    	System.out.println( svcSayHello.sayHello(name) );
-    }
+    //Command line arguments - just one argument.
+    @Argument(index=0,name="name", required=true, description="name of person to say hello to.")
+    String name = null;
+
+	@Override
+	public Object execute() throws Exception {
+		if ( svcSayHello != null ) {
+	    	System.out.println( svcSayHello.sayHello(name) );			
+		}
+		else {
+			System.out.println( "svcSayHello not initialized");
+		}
+
+		return null;
+	}
 
 }
