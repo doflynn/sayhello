@@ -23,6 +23,7 @@
 	</parent>
 
 	<artifactId>sayhello-cmd</artifactId>
+	<version>${sayhello.version}</version>
 	<packaging>bundle</packaging>
 
 	<name>sayhello-cmd</name>
@@ -35,14 +36,32 @@
 			<version>${sayhello.version}</version>
 			<type>bundle</type>
 		</dependency>
+		<dependency>
+			<groupId>com.lodentech.sayhello</groupId>
+			<artifactId>sayhello-svc</artifactId>
+			<version>${sayhello.version}</version>
+			<type>bundle</type>
+		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.karaf.shell/org.apache.karaf.shell.console -->
 		<dependency>
 			<groupId>org.apache.karaf.shell</groupId>
 			<artifactId>org.apache.karaf.shell.console</artifactId>
-			<version>4.1.3</version>
+			<version>4.0.8</version>
 		</dependency>
-
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<configuration>
+					<instructions>
+						<Karaf-Commands>*</Karaf-Commands>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
