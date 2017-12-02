@@ -35,7 +35,7 @@
 				<artifactId>maven-bundle-plugin</artifactId>
 				<configuration>
 					<instructions>
-						<Karaf-Commands>*</Karaf-Commands>
+						<Bundle-Activator>com.lodentech.sayhello.svc.Activator</Bundle-Activator>
 					</instructions>
 				</configuration>
 			</plugin>

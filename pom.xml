@@ -56,9 +56,6 @@
 				<extensions>true</extensions>
 				<configuration>
 					<obrRepository>NONE</obrRepository>
-					<instructions>
-						<_include>osgi.bnd</_include>
-					</instructions>
 				</configuration>
 			</plugin>
 		</plugins>
