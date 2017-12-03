@@ -7,9 +7,9 @@
 
 	<feature name="sayhello" version="${project.version}">
 	
-		<bundle>mvn:com.lodentech.sayhello/sayhello-api/${project.version}</bundle>
-		<bundle>mvn:com.lodentech.sayhello/sayhello-svc/${project.version}</bundle>
-		<bundle>mvn:com.lodentech.sayhello/sayhello-cmd/${project.version}</bundle>
+		<bundle>mvn:${groupId}/sayhello-api/${project.version}</bundle>
+		<bundle>mvn:${groupId}/sayhello-svc/${project.version}</bundle>
+		<bundle>mvn:${groupId}/sayhello-cmd/${project.version}</bundle>
 
 		<!-- * when installing the feature, install configuration settings too -->
 		<configfile finalname="${karaf.etc}/com.lodentech.sayhello.cfg"
@@ -20,6 +20,7 @@
 		<!-- * define project dependencies -->
 		<feature version="[3.2.1,3.3)">cxf-jaxrs</feature>
 		<feature version="[3.2.1,3.3)">cxf-jackson</feature>
+
 
 	</feature>
 

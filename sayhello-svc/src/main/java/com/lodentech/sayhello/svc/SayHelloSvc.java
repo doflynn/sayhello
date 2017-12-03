@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.lodentech.sayhello.api.ISayHello;
 
-import java.util.Map;
 
 import org.osgi.service.component.ComponentContext;
 // annotations...
@@ -22,7 +21,7 @@ import org.osgi.service.component.annotations.Modified;
  *
  * @author doflynn
  */
-@Component( configurationPid={"com.lodentech.sayhello"}, immediate=true)
+@Component( name="svcSayHello", configurationPid={"com.lodentech.sayhello"}, immediate=true)
 public class SayHelloSvc implements ISayHello {
 
 	private static final String GREETING = "greeting";
