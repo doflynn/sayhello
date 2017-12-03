@@ -32,7 +32,7 @@ public class CmdHello implements Action
 	@Override
 	public Object execute() throws Exception {
 		if ( svcSayHello != null ) {
-	    	System.out.println( svcSayHello.sayHello(name) );			
+	    	System.out.println( svcSayHello.sayHello(name).toString() );			
 		}
 		else {
 			System.out.println( "svcSayHello not initialized");

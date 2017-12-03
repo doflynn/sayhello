@@ -5,8 +5,8 @@ package com.lodentech.sayhello.svc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.lodentech.sayhello.api.ISayHello;
 
+import com.lodentech.sayhello.api.ISayHello;
 
 import org.osgi.service.component.ComponentContext;
 // annotations...
@@ -27,9 +27,29 @@ public class SayHelloSvc implements ISayHello {
 	private static final String GREETING = "greeting";
 
 	final Logger logger = LoggerFactory.getLogger(SayHelloSvc.class);
+	protected String greeting;
+	protected String name;
 
-	private String greeting = "Hello";
-	
+	@Override
+	public ISayHello sayHello(String name) {
+		this.name = name;
+		return this;
+	}
+
+	@Override
+	public String getGreeting() {
+		return this.greeting;
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	public String toString() {
+		return this.greeting + " " + this.name;
+	}
+
 	@Activate
 	public void start(ComponentContext ctx) {
 		logger.info("activating sayHello service");
@@ -51,16 +71,6 @@ public class SayHelloSvc implements ISayHello {
 			this.greeting = value;
 			logger.info("...greeting = "+this.greeting);
 		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.lodentech.sayhello.api.ISayHello#sayHello(java.lang.String)
-	 */
-	@Override
-	public String sayHello(String name) {
-		logger.info("Saying hello to: ", name);
-		
-		return this.greeting + " " + name;
 	}
 
 }

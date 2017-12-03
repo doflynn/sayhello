@@ -28,5 +28,8 @@ public interface ISayHello {
 	@Path("/{id}")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public String sayHello( @PathParam("id") String name)
-;}
+	public ISayHello sayHello( @PathParam("id") String name);
+	
+	public String getGreeting();
+	public String getName();
+}
