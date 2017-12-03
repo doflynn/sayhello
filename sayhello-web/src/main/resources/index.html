@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<title>SayHello</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+	crossorigin="anonymous">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+</script>
+<body>
+
+	<div ng-app="appSayHello" ng-controller="ctrlSayHello">
+
+		<h1>SayHello - Karaf Feature Example</h1>
+
+		<div class="container-fluid">
+
+			<form ng-app="appSayHello" name="myForm">
+				<table style="width: 50%">
+					<tr>
+						<td>Name:</td>
+						<td><input type="text" name="hellodName"
+							ng-model="sayHello.name"></td>
+					</tr>
+					<tr>
+						<td>
+							<button ng-click="getHello()">Say Hello</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+		<br />
+		<h2 ng-bind="greeting"></h2>
+
+
+		<br />Status: {{status}}
+	</div>
+
+
+	<script>
+		var appReq = angular.module('appSayHello', []);
+
+		appReq.controller('ctrlSayHello', function($scope, $http) {
+            $scope.greeting = "";
+			$scope.status = "OK";
+			var urlHello = "http://localhost:8181/cxf/sayhello/hello/";
+
+			$scope.sayHello = {
+				greeting : "",
+				name : ""
+			};
+
+			$scope.getHello = function() {
+				$http
+				({
+					method : 'GET',
+					url : urlHello + $scope.sayHello.name
+				}).then(
+						function(response) {
+							//First function handles success
+							$scope.sayHello = response.data;
+							$scope.greeting = $scope.sayHello.greeting + " " + $scope.sayHello.name;
+							$scope.status = response.status + " "
+									+ response.statusText;
+						}, function(response) {
+							//Second function handles error
+							$scope.status = response.status + " "
+									+ response.statusText;
+						});
+			};
+
+		});
+	</script>
+</body>
+</html>

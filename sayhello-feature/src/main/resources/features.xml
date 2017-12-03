@@ -10,6 +10,7 @@
 		<bundle>mvn:${groupId}/sayhello-api/${project.version}</bundle>
 		<bundle>mvn:${groupId}/sayhello-svc/${project.version}</bundle>
 		<bundle>mvn:${groupId}/sayhello-cmd/${project.version}</bundle>
+		<bundle>mvn:${groupId}/sayhello-web/${project.version}</bundle>
 
 		<!-- * when installing the feature, install configuration settings too -->
 		<configfile finalname="${karaf.etc}/com.lodentech.sayhello.cfg"

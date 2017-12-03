@@ -30,17 +30,3 @@ sayhello:hello <name>
 
 The *sayhello command* requires the *sayhello service* that is registered via Declarative Services.
 
-   
-Bundle-Activator: com.lodentech.sayhello.cmd.Activator
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-
-#Import-Package: \
-#	org.apache.karaf.shell.table;version='[3,5)',\
-#	*
-
-Export-Package: 
-
-Bundle-ClassPath: .
-
-Karaf-Commands=*
