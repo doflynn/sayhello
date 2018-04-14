@@ -17,4 +17,17 @@ Changes to the *sayhello service* configuration properties can be made by editin
 or by the [WebConsole](http://localhost:8181/system/console/configMgr).  The *sayhello service* will be
 notified when any change is made to its configuration properties.
 
+## CXF REST
+
+The SayHello service is also registered as a REST service via CXF.  OSGi _blueprint_ is used to 
+configure CXF to deploy the previously registered SayHello service.
+
+The REST web service is accessbile via:
+
+## Execution
+The web app for SayHello is accessbile via
+
+    http://localhost:8181/sayhello
+
+
 

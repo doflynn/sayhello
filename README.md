@@ -13,7 +13,7 @@ via maven's  `mvn clean install`
 ## Karaf Commands
 The following are common commands 
 * `feature:repo-add mvn:com.lodentech.sayhello/sayhello-feature/1.0.0-SNAPSHOT/xml`
-* `feature:install sayhello-feature`
-* `feature:uninstall sayhello-feature`
+* `feature:install sayhello`
+* `feature:uninstall sayhello`
 * `feature:repo-refresh`
 * `feature:repo-remove mvn:com.lodentech.sayhello/sayhello-feature/1.0.0-SNAPSHOT/xml`

@@ -23,58 +23,45 @@
 	</parent>
 
 	<artifactId>sayhello-test</artifactId>
-	<version>${sayhello.version}</version>
 	<name>sayhello-test</name>
 	<description>SayHello integration tests</description>
 
-	<properties>
-        <pax.exam.version>4.9.2</pax.exam.version>
-	</properties>
-
 	<dependencies>
-        <dependency>
-            <groupId>com.lodentech.sayhello</groupId>
-            <artifactId>sayhello-feature</artifactId>
-            <version>${sayhello.version}</version>
-            <type>xml</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.lodentech.sayhello</groupId>
-            <artifactId>sayhello-api</artifactId>
-            <version>${sayhello.version}</version>
+		<dependency>
+			<groupId>com.lodentech.sayhello</groupId>
+			<artifactId>sayhello-feature</artifactId>
+			<version>${project.version}</version>
+			<type>xml</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.lodentech.sayhello</groupId>
+			<artifactId>sayhello-api</artifactId>
+			<version>${project.version}</version>
 			<type>bundle</type>
-            <scope>test</scope>
-        </dependency>        
-        <dependency>
-            <groupId>com.lodentech.sayhello</groupId>
-            <artifactId>sayhello-svc</artifactId>
-            <version>${sayhello.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.lodentech.sayhello</groupId>
+			<artifactId>sayhello-svc</artifactId>
+			<version>${project.version}</version>
 			<type>bundle</type>
-            <scope>test</scope>
-        </dependency>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- Pax Exam directly supports Karaf as a test container -->
 		<dependency>
 			<groupId>org.ops4j.pax.exam</groupId>
 			<artifactId>pax-exam-container-karaf</artifactId>
-			<version>4.7.0</version>
+			<version>${pax.exam.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.ops4j.pax.exam</groupId>
 			<artifactId>pax-exam-junit4</artifactId>
-			<version>4.7.0</version>
+			<version>${pax.exam.version}</version>
 			<scope>test</scope>
 		</dependency>
-<!-- 
-		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-atinject-1.0_spec</artifactId>
-			<version>1.0</version>
-			<scope>test</scope>
-		</dependency>
- -->		
 
 		<!-- define Apache Karaf test environment -->
 		<dependency>
@@ -85,15 +72,44 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf.karaf</groupId>
+			<artifactId>apache-cxf</artifactId>
+			<type>xml</type>
+			<classifier>features</classifier>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.karaf.features</groupId>
+			<artifactId>standard</artifactId>
+			<type>xml</type>
+			<classifier>features</classifier>
+			<version>${karaf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.karaf.features</groupId>
+			<artifactId>enterprise</artifactId>
+			<type>xml</type>
+			<classifier>features</classifier>
+			<version>${karaf.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- Enable Pax Exams "versionAsInProject" feature -->
+			<!-- Needed if you use versionAsInProject() -->
 			<plugin>
 				<groupId>org.apache.servicemix.tooling</groupId>
 				<artifactId>depends-maven-plugin</artifactId>
-				<version>1.2</version>
+				<version>1.4.0</version>
 				<executions>
 					<execution>
 						<id>generate-depends-file</id>
@@ -103,7 +119,17 @@
 					</execution>
 				</executions>
 			</plugin>
+
+
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.21.0</version>
+				<configuration>
+					<systemPropertyVariables>
+						<pax.exam.karaf.version>${karaf.version}</pax.exam.karaf.version>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
 </project>
